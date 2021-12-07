@@ -1,0 +1,46 @@
+<div class="card" style="margin:auto;">
+    <div class="card-body">
+      <div class="card-title"><h1>Agregar usuario</h1></div>
+  
+      <form [formGroup]="AgregarForm" (ngSubmit)="agregar()">
+  
+        <div>
+          <label>Nombre</label>
+          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': precionado && errorLlenado.name.errors }" />
+          <div *ngIf="precionado && errorLlenado.name.errors" class="invalid-feedback">
+            <div *ngIf="errorLlenado.name.errors.required">Nombre requerido</div>
+          </div>
+        </div>
+
+        <div>
+            <label>Correo</label>
+            <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': precionado && errorLlenado.email.errors }" />
+            <div *ngIf="precionado && errorLlenado.email.errors" class="invalid-feedback">
+              <div *ngIf="errorLlenado.email.errors.required">Correo requerido</div>
+            </div>
+          </div>
+
+          <div>
+            <label>Contraseña</label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': precionado && errorLlenado.password.errors }" />
+            <div *ngIf="precionado && errorLlenado.password.errors" class="invalid-feedback">
+              <div *ngIf="errorLlenado.password.errors.required">Contraseña requerida</div>
+            </div>
+          </div>        
+
+        <label>Rol de usuario</label>
+    <div *ngIf="precionado && errorLlenado.role.errors" class="invalid-feedback">
+      <div *ngIf="errorLlenado.role.errors.required">Campo estatus requerido</div>
+    </div>
+    <select class="form-select form-select-sm" style="width: 100px" formControlName="role" [ngClass]="{ 'is-invalid': precionado && errorLlenado.role.errors }">
+      <option value= 1 >Administrador</option>
+      <option value= 2 >Empleado</option>
+      <option value= 3 >Usuario</option>
+    </select>
+                  
+        <button class="btn btn-success" style="margin-top: 10px;" type="submit">Agregar</button>
+        <button class="btn btn-dark" style="margin-top: 10px;" type="button" (click)="regresar()">Regresar</button>                    
+      </form>
+  
+    </div>
+  </div>

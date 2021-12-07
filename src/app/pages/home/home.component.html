@@ -1,1 +1,37 @@
-<p>home works!</p>
+<h1 style="text-align: center;">Bienvenido 0:</h1>
+
+<div style="text-align: center;">
+  <h3 *ngIf="local['role'] == 'admin'" style="color: blue;">Permiso para: Ver usuarios/Agregar usuarios</h3>
+  <h3 *ngIf="local['role'] == 'empleado'" style="color: red;">Permiso para: Ver usuarios</h3>
+  <h3 *ngIf="local['role'] == 'usuario'" style="color: green;">Permiso para: Ver tu cuenta</h3>
+</div>
+
+
+<div *ngIf="local['role'] == 'admin' || local['role'] == 'empleado' ">
+  <button class="btn btn-success" style="margin: 10px;" (click)="irAgregar()" *ngIf="local['role'] == 'admin' ">Agregar</button>  
+
+  <button class="btn btn-danger" style="margin: 10px;" (click)="cerrarSesion()">Cerrar sesión</button>
+  
+  <div class="card" *ngFor="let item of lst">
+      <div class="card-body">
+        <h5 class="card-title">{{item.id}} - {{item.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{item.email}}</h6>           
+        <h6 class="card-subtitle mb-2 text-muted">{{item.role}}</h6>
+      </div>
+    </div>
+  
+</div>
+
+ <!--rol: usuario-->
+ <div *ngIf="local['role'] == 'usuario' ">
+  <h3>Tu cuenta!</h3>
+
+  <button class="btn btn-danger" style="margin: 10px;" (click)="cerrarSesion()">Cerrar sesión</button>
+ <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Nombre: {{unUsuario.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Correo: {{unUsuario.email}}</h6>           
+    <h6 class="card-subtitle mb-2 text-muted">Rol: {{unUsuario.role}}</h6>
+  </div>
+</div>
+ </div> 
